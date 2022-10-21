@@ -19,6 +19,9 @@ import statistics
 from decimal import Decimal, ROUND_HALF_UP, ROUND_HALF_EVEN
 import cgi
 
+from werkzeug import secure_filename
+from io import StringIO
+
 columns = ["氏名","氏名（ひらがな）","年齢","生年月日","性別","血液型","メアド",
            "電話番号","携帯電話番号","郵便番号","住所","会社名",
            "クレジットカード","有効期限","マイナンバー"]
@@ -539,19 +542,18 @@ def data_extension():
     return render_template("extension.html",)
 
 @app.route("/get_base_data", methods=['GET',"POST"])
-def export_dummy_by_number():
-    if request.method == "GET" or "POST":
-        base_csv = request.form['base']
-        row_num  = request.form['row']
-        base_df = pd.read_csv(base_csv)
-        
-        print(base_csv.head())
+def export_extended_data():
+    if request.method == "POST":
+        row_num  = int(request.form['row'])
+        f = request.files["base"]
+        base_df = pd.read_csv(f)
+        print("type:",type(f))
+        print("rownum:",row_num)
         basic_path = os.getcwd()+"/"
-        # ①ここで表示できているか
-        
-        tdf = generator.extended_generator(base_df,row_num)
-        
-        # 
+        # ①ここで表示できているか→done
+        tdf = generator.extended_generator(base_df,row_num)        
+        tdf_path = "{}input/df/tdf.csv".format(basic_path)
+        tdf.to_csv(tdf_path,index=False)
         return send_from_directory(
             directory=basic_path + '/input/df',
             filename='tdf.csv',

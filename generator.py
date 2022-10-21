@@ -60,8 +60,6 @@ translate = {"name":["氏名","氏名（ひらがな）"],"age":["年齢"],
 def create_age_list(begin, end):
     return [begin+i for i in range(end-begin+1)]
 # 関数ーーーーーーーーーーーーーーーーーーーーーーーーー
-
-
 # 郵便番号と住所
 def zip_address():
     is_ok = False
@@ -786,9 +784,6 @@ col_algo_dict ={
     "ann_inc":"ann_inc",
 #     "":"",
 #     "":"",
-#     "":"",
-#     "":"",
-#     "":"",
 }
 def return_algo_from_col(column):
     col_list= list(col_algo_dict.keys())
@@ -871,8 +866,6 @@ def distinction(df,does_print):
                 if min(list_100_by_10ditits) == max(list_100_by_10ditits): common = list_100_by_10ditits[0]
                 #elif min(list_100_by_10ditits) >= 1: least = min(list_100_by_10ditits)
                 else: least = min(list_100_by_10ditits)
-
-
             if col_types[i] == np.float64:
                 algo = "distribution_copy"
             elif col_types[i] == np.int64:
@@ -1080,7 +1073,7 @@ def generate_extended_data(df,distinction_data,necessary_data,row_num):
             if "birth_day" in algo_box: info[algo_box.index("birth_day")] = birth_day
             if "age" in algo_box: info[algo_box.index("age")] = age
         if if_name:
-            name,kana,gender,email = name_kana_sex_email()
+            name,kana,gender,email = name_kana_sex_email_random()
             if "full_name_ja" in algo_box: info[algo_box.index("full_name_ja")] = name
             if "full_name_kana" in algo_box: info[algo_box.index("full_name_kana")] = kana
             if "email" in algo_box: info[algo_box.index("email")] = email
