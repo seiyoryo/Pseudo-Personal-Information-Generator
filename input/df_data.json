@@ -1,0 +1,24 @@
+{
+    "row": "100",
+    "info": [
+        "name",
+        "age",
+        "birthday",
+        "sex",
+        "blood",
+        "email",
+        "tphone",
+        "cphone",
+        "zip",
+        "address",
+        "compony",
+        "card",
+        "expire",
+        "mynumber"
+    ],
+    "age_start": "20",
+    "age_end": "80",
+    "compony_start": "18",
+    "compony_end": "60",
+    "cumulated_number": 0
+}

@@ -1,0 +1,42 @@
+
+{% extends "comf_basic.html" %}
+{% block content %}
+<h3>出力予想図</h3>
+<div class="example", style="height:700px; width:1200px; overflow-y:scroll; margin-right: auto; margin-left: auto;">
+<table>
+	<tr>
+	{% for i in header: %}
+		<th scope="col">{{ i }}</th>
+	{% endfor %}
+	</tr>
+	{% for i in record: %}
+	<tr>
+		{% for j in i: %}
+			{% if loop.first %}
+		<th>{{ j }}</th>
+			{% else %}
+		<td>{{ j }}</td>
+			{% endif %}
+		{% endfor %}
+	</tr>
+	{% endfor %}
+</table>
+</div>
+<img src="static/figure/dummy/age.png" width = "400" alt="年齢分布">
+<img src="static/figure/dummy/blood.png" width = "400" alt="血液型分布">
+<img src="static/figure/dummy/sex.png" width = "400" alt="性別分布">
+<form action="/export" method="GET">
+	<input type="submit" style= "font-size:100%;" value="ダウンロード" class="download">
+</form>
+<form action="/copy_distribution" method="POST">
+	<p><font size="4">分布類似度係数</font></p>
+	<input type="text" style="width:100px;height:30px;font-size:20px;text-align: center;margin: 2px 155px 15px;" name="age_adaption" size=5 value={{ age_adaption }}>
+	<input type="text" style="width:100px;height:30px;font-size:20px;text-align: center;margin: 2px 155px 15px;" name="blood_adaption" size=5 value={{ blood_adaption }}>
+	<input type="text" style="width:100px;height:30px;font-size:20px;text-align: center;margin: 2px 155px 15px;" name="sex_adaption" size=5 value={{ sex_adaption }}>
+	<br>
+	<input type="submit" style= "font-size:100%;" value="同系分布データ作成" class="download">
+</form>
+	{% block content2 %}
+	<!-- ここにメインコンテンツを書く -->
+	{% endblock %}
+{% endblock %}

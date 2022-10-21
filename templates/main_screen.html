@@ -1,0 +1,29 @@
+{% extends "layout.html" %}
+{% block content %}
+<h3>ランダム個人情報ジェネレーター</h3>
+<form method="POST">
+    <br><input type="submit" value="送信">
+    <br>行数：<input type="text" name="row" size=6 value=100>
+    <div id = "element">
+        <br><input type="checkbox" name="info" value="name" checked> 氏名
+        <br><input type="checkbox" name="info" value="age" checked> 年齢 
+        <input type="text" name="age_start" size=3 value=20>歳〜
+        <input type="text" name="age_end" size=3 value=80>歳
+        <br><input type="checkbox" name="info" value="birthday" checked> 生年月日
+        <br><input type="checkbox" name="info" value="sex" checked>性別
+        <br><input type="checkbox" name="info" value="blood" checked>血液型
+        <br><input type="checkbox" name="info" value="email" checked>メールアドレス
+        <br><input type="checkbox" name="info" value="tphone" checked>電話番号
+        <br><input type="checkbox" name="info" value="cphone" checked>携帯電話番号
+        <br><input type="checkbox" name="info" value="zip" checked>郵便番号
+        <br><input type="checkbox" name="info" value="address" checked>住所
+        <br><input type="checkbox" name="info" value="compony" checked>会社名
+        <input type="text" name="compony_start" size=3 value=18>歳〜
+        <input type="text" name="compony_end" size=3 value=60>歳
+        <br><input type="checkbox" name="info" value="card" checked>クレジットカード番号
+        <br><input type="checkbox" name="info" value="expire" checked>クレジットカード期限
+        <br><input type="checkbox" name="info" value="mynumber" checked>マイナンバー
+    </div>
+</form>
+
+{% endblock %}

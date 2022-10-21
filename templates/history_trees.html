@@ -1,0 +1,39 @@
+
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>DataFrameをブラウザ上で表示</title>
+<link rel="stylesheet" href="../static/css/tree.css">
+<style></style>
+<script src=”https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.6/d3.min.js”></script>
+<script src=”https://cdn.plot.ly/plotly-latest.min.js”></script>
+
+</head>
+<body>
+	<div class="wrapper">
+		<aside class="sidebar">
+			<div class="widget widget--sticky">
+				<a href="/">初期条件（初期化）</a><br>
+				<a href="/history_tree">履歴とツリー</a><br>
+        		<a href="/just_display">出力予想図</a><br>
+			</div>
+		</aside>
+		<main class="main">
+			<p>ツリー履歴</p>
+        <ul class="tree">
+          {% block tree %}
+          {% endblock %}
+        </ul>
+		</main>
+	</div>
+</body>
+</html>
+
+
+
+
+
+
+

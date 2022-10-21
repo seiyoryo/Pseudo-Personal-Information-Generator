@@ -1,0 +1,34 @@
+{% extends "comf_basic.html" %}
+{% block content %}
+
+<form method="post" enctype="multipart/form-data">
+    <input id="upload-file" type="file" name="base" accept=".csv"><br>
+    行数：<input type="text" name="row" size=8 value=100><br>
+    <button type="submit">送信する</button>
+</form>
+
+<script> 
+    const input = document.getElementById('upload-file');
+    input.addEventListener('change', (e) => {
+      console.log(e.target.files[0]);
+    });
+    var file = e.target.files[0];
+    var reader = new FileReader();
+    reader.readAsText(file);
+    reader.onload = function(event) {
+        var result = event.target.result;
+        makeCSV(result);
+       };
+      //読み込めなかった場合のエラー処理
+        reader.onerror = function() {
+          alert("エラー：ファイルをロードできません。");
+       };
+    function makeCSV(csvdata) {
+        //5:csvデータを1行ごとに配列にする
+        var tmp = csvdata.split("\n");
+    }
+    
+
+</script>
+
+{% endblock %}

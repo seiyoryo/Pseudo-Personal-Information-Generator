@@ -1,0 +1,147 @@
+{% extends "comformation.html" %}
+{% block content2 %}
+<br>
+<table align="center" border="1" style="border-collapse: collapse">
+    <tr>
+        <th>分布＼統計値</th>
+        <th>JSdvg</th>
+        <th>JSdvg.n</th>
+        <th>norm1</th>
+        <th>norm1.n</th>
+        <th>平均値</th>
+        <th>中央値</th>
+        <th>最大値</th>
+        <th>最小値</th>
+        <th>分布平均値</th>
+        <th>分布中央値</th>
+        <th>分布最大値</th>
+        <th>分布最小値</th>
+    </tr>
+    <tr>
+        <th>年齢</th>
+        <td>{{ abs_statistics.age.js_dvg }}</td>
+        <td>{{ abs_statistics.age.js_dvg_normalized }}</td>
+        <td>{{ abs_statistics.age.norm1 }}</td>
+        <td>{{ abs_statistics.age.norm1_normalized }}</td>
+        <td>{{ abs_statistics.age.mean }}</td>
+        <td>{{ abs_statistics.age.median }}</td>
+        <td>{{ abs_statistics.age.max }}</td>
+        <td>{{ abs_statistics.age.min }}</td>
+        <td>{{ abs_statistics.age.hist_mean }}</td>
+        <td>{{ abs_statistics.age.hist_median }}</td>
+        <td>{{ abs_statistics.age.hist_max }}</td>
+        <td>{{ abs_statistics.age.hist_min }}</td>
+    </tr>
+    <tr>
+        <th>血液型</th>
+        <td>{{ abs_statistics.blood.js_dvg }}</td>
+        <td>{{ abs_statistics.blood.js_dvg_normalized }}</td>
+        <td>{{ abs_statistics.blood.norm1 }}</td>
+        <td>{{ abs_statistics.blood.norm1_normalized }}</td>
+        <td>{{ abs_statistics.blood.mean }}</td>
+        <td>{{ abs_statistics.blood.median }}</td>
+        <td>{{ abs_statistics.blood.max }}</td>
+        <td>{{ abs_statistics.blood.min }}</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+    </tr>
+    <tr>
+        <th>性別</th>
+        <td>{{ abs_statistics.sex.js_dvg }}</td>
+        <td>{{ abs_statistics.sex.js_dvg_normalized }}</td>
+        <td>{{ abs_statistics.sex.norm1 }}</td>
+        <td>{{ abs_statistics.sex.norm1_normalized }}</td>
+        <td>{{ abs_statistics.sex.mean }}</td>
+        <td>{{ abs_statistics.sex.median }}</td>
+        <td>{{ abs_statistics.sex.max }}</td>
+        <td>{{ abs_statistics.sex.min }}</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+    </tr>
+</table>
+<br>
+<img src="static/figure/d_copied_dummy/{{now_df_number}}/age.png" width = "400" alt="年齢分布">
+<img src="static/figure/d_copied_dummy/{{now_df_number}}/blood.png" width = "400" alt="血液型分布">
+<img src="static/figure/d_copied_dummy/{{now_df_number}}/sex.png" width = "400" alt="性別分布">
+
+<form action="/copy_distribution_by_ratio" method="POST">
+    <div style="height:90px; width:1200px; display: flex; flex-wrap: wrap; margin-right: auto; margin-left: auto;">
+        <div style="width: calc(100% / 3); text-align:left">
+            <label><input type="radio" name="random" value="random" checked="checked">ランダム</label>
+            <br>
+            <label><input type="radio" name="random" value="specify">指定（以下より選択）</label>
+            <br>
+            ┝ <label><input type="radio" name="distribution_type" value="uniform">一様分布</label><br>
+            ┝ <label><input type="radio" name="distribution_type" value="gaus">ガウス分布：</label>
+            中央値<input type="text" style="width: calc(100%/6);height:30px;font-size:20px;text-align: center; margin=10px;" name="median" >
+            分散<input type="text" style="width: calc(100%/6);height:30px;font-size:20px;text-align: center; margin=10px;" name="var" >
+            <br>
+            ┗ <label><input type="radio" name="distribution_type" value="beta">β分布：</label>
+            β値<input type="text" style="width: calc(100%/6);height:30px;font-size:20px;text-align: center; margin=10px;" name="beta" >
+        </div>
+        <div style="width: calc(100% / 3); display: flex; flex-wrap: wrap;">
+            <div style="width: calc(100% / 7);"></div>
+            <input type="text" style="width: calc(100%/6);height:30px;font-size:20px;text-align: center; margin=10px;" name="a_ratio" value={{ blood_ratio_list.0 }}>
+            <input type="text" style="width: calc(100%/6);height:30px;font-size:20px;text-align: center; margin=10px;" name="b_ratio" value={{ blood_ratio_list.1 }}>
+            <input type="text" style="width: calc(100%/6);height:30px;font-size:20px;text-align: center; margin=10px;" name="ab_ratio"value={{ blood_ratio_list.2 }}>
+            <input type="text" style="width: calc(100%/6);height:30px;font-size:20px;text-align: center; margin=10px;" name="o_ratio" value={{ blood_ratio_list.3 }}>
+        </div>
+        <div style="width: calc(100% / 3);">
+            <input type="text" style="width: calc(100%/4);height:30px;font-size:20px;text-align: center; margin=10px;" name="man_ratio" value={{ sex_ratio_list.0 }}>
+            <input type="text" style="width: calc(100%/4);height:30px;font-size:20px;text-align: center; margin=10px;" name="woman_ratio" value={{ sex_ratio_list.1 }}>
+            <input type="text" style="width: calc(100%/4);height:30px;font-size:20px;text-align: center; margin=10px;" name="others_ratio"value={{ sex_ratio_list.2 }}>
+        </div>
+    </div>
+    <input type="submit" style= "font-size:100%;" value="比率指定分布データ作成" class="download">
+</form>
+<br>
+
+<font size="+1">過去の分布一覧</font>
+
+<form action="/make_mixture_distribution" method="POST">
+    <div class = "box1" style="height:400px; width:1200px; overflow-y:scroll; margin-right: auto; margin-left: auto; border: 1px solid;">
+        {% for number in df_number_list %}
+        <div style="height:150px; width:1200px;">
+            <input type="checkbox" name="data" value={{ number }} style = "transform: scale(2); margin:10px 40px 60px 0" checked>
+            <img src="static/figure/d_copied_dummy/{{ number }}/age.png" width = "250" alt="年齢分布">
+            <img src="static/figure/d_copied_dummy/{{ number }}/blood.png" width = "250" alt="血液型分布">
+            <img src="static/figure/d_copied_dummy/{{ number }}/sex.png" width = "250" alt="性別分布">
+            <input type="text" style="width: 40px;height:30px;font-size:20px;text-align: center;" name="{{ number }}ratio" value=10>
+        </div>
+        <br>
+        {% endfor %}
+    </div>
+    <br>
+    <input type="submit" style= "font-size:100%;" value="重み付き混合データ作成" class="download">
+</form>
+<br>
+<div class="example", style="height:700px; width:1200px; overflow-y:scroll; margin-right: auto; margin-left: auto;">
+<table>
+    <tr>
+    {% for i in copied_df_header: %}
+        <th scope="col">{{ i }}</th>
+    {% endfor %}
+    </tr>
+    {% for i in copied_df_record: %}
+    <tr>
+        {% for j in i: %}
+            {% if loop.first %}
+        <th>{{ j }}</th>
+            {% else %}
+        <td>{{ j }}</td>
+            {% endif %}
+        {% endfor %}
+    </tr>
+    {% endfor %}
+</table>
+</div>
+<br>
+
+<form action="/export_copied_dummy" method="GET">
+    <input type="submit" style= "font-size:100%;" value="ダウンロード" class="download">
+</form>
+{% endblock %}
