@@ -1,6 +1,8 @@
 # Git関連
 BRANCH ?= main
 MSG ?= update
+PYTHON ?= python
+PIP ?= pip
 
 # Git関連
 ## GitHubのリポジトリURL（固定値のため "=" を使用）
@@ -32,3 +34,14 @@ git-push:
 	@echo "🚀 Pushing to remote branch: $(BRANCH)"
 	git push -u origin $(BRANCH)
 	@echo "✅ Git push completed."
+
+# =======================
+# Setup / Run
+# =======================
+.PHONY: setup run
+
+setup:
+	$(PIP) install -r requirements.txt
+
+run:
+	$(PYTHON) app/main.py

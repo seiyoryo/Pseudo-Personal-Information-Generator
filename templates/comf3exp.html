@@ -64,9 +64,9 @@
     </tr>
 </table>
 <br>
-<img src="static/figure/d_copied_dummy/{{now_df_number}}/age.png" width = "400" alt="年齢分布">
-<img src="static/figure/d_copied_dummy/{{now_df_number}}/blood.png" width = "400" alt="血液型分布">
-<img src="static/figure/d_copied_dummy/{{now_df_number}}/sex.png" width = "400" alt="性別分布">
+<img src="/outputs/figure/d_copied_dummy/{{now_df_number}}/age.png" width = "400" alt="年齢分布">
+<img src="/outputs/figure/d_copied_dummy/{{now_df_number}}/blood.png" width = "400" alt="血液型分布">
+<img src="/outputs/figure/d_copied_dummy/{{now_df_number}}/sex.png" width = "400" alt="性別分布">
 
 <form action="/copy_distribution_by_ratio" method="POST">
     <div style="height:90px; width:1200px; display: flex; flex-wrap: wrap; margin-right: auto; margin-left: auto;">
@@ -107,9 +107,9 @@
         {% for number in df_number_list %}
         <div style="height:150px; width:1200px;">
             <input type="checkbox" name="data" value={{ number }} style = "transform: scale(2); margin:10px 40px 60px 0" checked>
-            <img src="static/figure/d_copied_dummy/{{ number }}/age.png" width = "250" alt="年齢分布">
-            <img src="static/figure/d_copied_dummy/{{ number }}/blood.png" width = "250" alt="血液型分布">
-            <img src="static/figure/d_copied_dummy/{{ number }}/sex.png" width = "250" alt="性別分布">
+            <img src="/outputs/figure/d_copied_dummy/{{ number }}/age.png" width = "250" alt="年齢分布">
+            <img src="/outputs/figure/d_copied_dummy/{{ number }}/blood.png" width = "250" alt="血液型分布">
+            <img src="/outputs/figure/d_copied_dummy/{{ number }}/sex.png" width = "250" alt="性別分布">
             <input type="text" style="width: 40px;height:30px;font-size:20px;text-align: center;" name="{{ number }}ratio" value=10>
         </div>
         <br>

@@ -23,8 +23,12 @@
 		<main class="main">
 			<p>ツリー履歴</p>
         <ul class="tree">
-          {% block tree %}
-          {% endblock %}
+          {% if tree_html %}
+            {{ tree_html | safe }}
+          {% else %}
+            {% block tree %}
+            {% endblock %}
+          {% endif %}
         </ul>
 		</main>
 	</div>

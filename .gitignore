@@ -1,0 +1,19 @@
+# Python
+__pycache__/
+*.py[cod]
+
+# Secrets
+*.pem
+.env
+
+# OS
+.DS_Store
+
+# Generated artifacts (created by running the app)
+outputs/
+state/*.json
+
+# Legacy generated artifacts (pre-refactor)
+input/df/*.csv
+static/figure/**
+
